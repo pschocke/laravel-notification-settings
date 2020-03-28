@@ -28,13 +28,9 @@ class SendNotificationJob implements ShouldQueue
     public function handle()
     {
         foreach ($this->notifiable->notificationSettings as $notificationSetting) {
-
             if ($notificationSetting->settings[$this->notificationSettingName] == true) {
-
                 $notificationSetting->notify($this->notification);
-
             }
-
         }
     }
 }

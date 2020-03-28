@@ -3,7 +3,6 @@
 
 namespace pschocke\NotificationSettings\Tests;
 
-
 class EmailNotificationTest extends TestCase
 {
     protected $notificationSetting;
@@ -23,7 +22,6 @@ class EmailNotificationTest extends TestCase
             ],
             'verified_at' => now(),
         ]);
-
     }
 
     /** @test */
@@ -31,6 +29,4 @@ class EmailNotificationTest extends TestCase
     {
         $this->assertEquals('test@test.com', $this->notificationSetting->routeNotificationForMail());
     }
-
-
 }

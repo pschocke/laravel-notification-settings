@@ -28,20 +28,15 @@ abstract class Handler
         ];
 
         if (config('notificationSettings.driver.' . $this->notificationChannel . '.verification.enabled')) {
-
             $arr['verification_token'] = rand(111111, 999999);
-
         } else {
-
             $arr['verified_at'] = now();
-
         }
 
         /** @var NotificationSetting $notificationSetting */
         $notificationSetting = $this->notifiable->notificationSettings()->create($arr);
 
         if (config('notificationSettings.driver.' . $this->notificationChannel . '.verification.enabled')) {
-
             $verificationNotification = config('notificationSettings.verificationNotification');
 
             $notificationSetting->notify(new $verificationNotification());
@@ -81,9 +76,7 @@ abstract class Handler
         $className = get_class($this->notifiable);
 
         if (array_key_exists($className, config('notificationSettings.settings'))) {
-
             return config('notificationSettings.settings.' . $className);
-
         }
 
         return config('notificationSettings.settings.default');
@@ -92,9 +85,7 @@ abstract class Handler
     private function getSettingsFromNotificationChannel($settings)
     {
         if (array_key_exists($this->notificationChannel, $settings)) {
-
             return array_keys($settings[$this->notificationChannel]);
-
         }
 
         return array_keys($settings['default']);
