@@ -6,7 +6,6 @@ use pschocke\NotificationSettings\Models\NotificationSetting;
 
 class MailHandler extends Handler implements HandlerInterface
 {
-
     protected $request = [
         'email' => ['required'],
     ];

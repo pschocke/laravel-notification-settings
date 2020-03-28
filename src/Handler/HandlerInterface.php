@@ -3,7 +3,6 @@
 
 namespace pschocke\NotificationSettings\Handler;
 
-
 use pschocke\NotificationSettings\Models\NotificationSetting;
 
 interface HandlerInterface
