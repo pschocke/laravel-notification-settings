@@ -1,5 +1,5 @@
 {
-    "name": "spatie/:package_name",
+    "name": "pschocke/laravel-notification-settings",
     "description": ":package_description",
     "keywords": [
         "spatie",
@@ -9,29 +9,29 @@
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "Patrick Schocke",
+            "email": "patrick@ausbildung-ms.de",
             "homepage": "https://spatie.be",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^7.4"
+        "php": "^7.4",
+        "illuminate/support": "~6|~7"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
-        "symfony/var-dumper": "^4.3",
         "orchestra/testbench": "^5.0",
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src"
+            "pschocke\\NotificationSettings\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "pschocke\\NotificationSettings\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -45,11 +45,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
-            }
+                "pschocke\\NotificationSettings\\NotificationSettingsServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
