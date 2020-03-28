@@ -1,11 +1,11 @@
 {
     "name": "pschocke/laravel-notification-settings",
-    "description": ":package_description",
+    "description": "Let users decide on what event they want to be notified over which way",
     "keywords": [
-        "spatie",
-        ":package_name"
+        "Laravel",
+        "Laravel Notifications"
     ],
-    "homepage": "https://github.com/spatie/:package_name",
+    "homepage": "https://github.com/pschocke/laravel-notification-settings",
     "license": "MIT",
     "authors": [
         {

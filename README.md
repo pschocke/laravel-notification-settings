@@ -1,8 +1,8 @@
 # Laravel Notification Settings
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/:package_name/run-tests?label=tests)](https://github.com/spatie/:package_name/actions?query=workflow%3Arun-tests+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/pschocke/laravel-notification-settings.svg?style=flat-square)](https://packagist.org/packages/pschocke/laravel-notification-settings)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/pschocke/laravel-notification-settings/run-tests?label=tests)](https://github.com/pschocke/laravel-notification-settings/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/pschocke/laravel-notification-settings.svg?style=flat-square)](https://packagist.org/packages/pschocke/laravel-notification-settings)
 
 This package tries to extend the default laravel notification system by giving models the ability to set individual notification settings for different ways of contact.
 
@@ -19,6 +19,18 @@ You can install the package via composer:
 ```bash
 composer require pschocke/laravel-notification-settings
 ```
+
+Publish and run the migration:
+```bash
+php artisan vendor:publish --provider="pschocke\NotificationSettings\NotificationSettingsServiceProvider" --tag="migrations"
+php artisan migrate
+```
+
+Publish the config file:
+```bash
+php artisan vendor:publish --provider="pschocke\NotificationSettings\NotificationSettingsServiceProvider" --tag="config"
+```
+
 
 ## Usage
 
@@ -188,17 +200,13 @@ After adding the handler you just need to add it to the handlers array in your c
 composer test
 ```
 
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email freek@spatie.be instead of using the issue tracker.
+If you discover any security related issues, please email patrick@ausbildung-ms.de instead of using the issue tracker.
 
 ## Credits
 
