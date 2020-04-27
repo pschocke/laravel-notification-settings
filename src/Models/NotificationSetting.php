@@ -61,6 +61,5 @@ class NotificationSetting extends Model
         if ($correctHandler) {
             return (new $correctHandler)->getSend($this);
         }
-
     }
 }
