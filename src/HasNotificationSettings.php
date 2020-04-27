@@ -22,7 +22,12 @@ trait HasNotificationSettings
         return $this->saveNotificationSetting($request->all());
     }
 
-    public function saveNotificationSetting(array $request)
+    public function forceSaveNotificationSetting(array $request)
+    {
+        return $this->saveNotificationSetting($request, true);
+    }
+
+    public function saveNotificationSetting(array $request, bool $force = false)
     {
         $type = Str::lower($request['type']);
 
@@ -37,7 +42,7 @@ trait HasNotificationSettings
 
         $handler->forNotifiable($this);
 
-        if (! $notificationSetting = $handler->create($request)) {
+        if (! $notificationSetting = $handler->create($request, $force)) {
             return false;
         }
 

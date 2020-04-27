@@ -116,4 +116,35 @@ class NotificationSettingTest extends TestCase
             TestNotification::class
         );
     }
+
+    /** @test */
+    public function a_new_notification_with_verification_enabled_automatically_sends_verification_notification()
+    {
+        Notification::fake();
+        $this->testModel->saveNotificationSetting($this->array);
+        $notifiable = $this->testModel->notificationSettings()->first();
+        Notification::assertSentTo($notifiable, NotificationSettingVerificationNotification::class);
+        $this->assertNull($notifiable->verified_at);
+    }
+
+    /** @test */
+    public function a_new_notification_with_verification_enabled_skips_verification_notification_when_forced()
+    {
+        Notification::fake();
+        $this->testModel->forceSaveNotificationSetting($this->array);
+        $notifiable = $this->testModel->notificationSettings()->first();
+        Notification::assertNotSentTo($notifiable, NotificationSettingVerificationNotification::class);
+        $this->assertNotNull($notifiable->verified_at);
+    }
+
+    /** @test */
+    public function a_new_notification_with_verification_disabled_skips_verification_notification_when_forced()
+    {
+        config()->set('notificationSettings.driver.mail.verification.enabled', false);
+        Notification::fake();
+        $this->testModel->saveNotificationSetting($this->array);
+        $notifiable = $this->testModel->notificationSettings()->first();
+        Notification::assertNotSentTo($notifiable, NotificationSettingVerificationNotification::class);
+        $this->assertNotNull($notifiable->verified_at);
+    }
 }

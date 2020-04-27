@@ -15,7 +15,7 @@ abstract class Handler
         $this->notifiable = $model;
     }
 
-    public function create(array $request)
+    public function create(array $request, bool $force = false)
     {
         if (! $validated = $this->validateRequest($request)) {
             return false;
@@ -27,7 +27,7 @@ abstract class Handler
             'settings' => $this->checkSettings($request['settings']),
         ];
 
-        if (config('notificationSettings.driver.' . $this->notificationChannel . '.verification.enabled')) {
+        if (config('notificationSettings.driver.' . $this->notificationChannel . '.verification.enabled') && ! $force) {
             $arr['verification_token'] = rand(111111, 999999);
         } else {
             $arr['verified_at'] = now();
@@ -36,7 +36,7 @@ abstract class Handler
         /** @var NotificationSetting $notificationSetting */
         $notificationSetting = $this->notifiable->notificationSettings()->create($arr);
 
-        if (config('notificationSettings.driver.' . $this->notificationChannel . '.verification.enabled')) {
+        if (config('notificationSettings.driver.' . $this->notificationChannel . '.verification.enabled') && ! $force) {
             $verificationNotification = config('notificationSettings.verificationNotification');
 
             $notificationSetting->notify(new $verificationNotification());
