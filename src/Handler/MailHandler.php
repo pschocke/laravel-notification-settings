@@ -16,7 +16,7 @@ class MailHandler extends Handler implements HandlerInterface
 
     public function canSend(string $methodName): bool
     {
-        return $methodName === 'routeNotificationForMail';
+        return $methodName === 'mail';
     }
 
     public function getSend(NotificationSetting $notificationSetting)

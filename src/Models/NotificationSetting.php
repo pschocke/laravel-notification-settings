@@ -5,7 +5,6 @@ namespace pschocke\NotificationSettings\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
 
 class NotificationSetting extends Model
 {
@@ -45,19 +44,23 @@ class NotificationSetting extends Model
         return $this->verification_token === $token;
     }
 
-    public function __call($method, $parameters)
+    /**
+     * Get the notification routing information for the given driver.
+     *
+     * @param  string  $driver
+     * @param  \Illuminate\Notifications\Notification|null  $notification
+     * @return mixed
+     */
+    public function routeNotificationFor($driver, $notification = null)
     {
-        if (Str::startsWith($method, 'routeNotificationFor')) {
-            $correctHandler = collect(config('notificationSettings.handler'))
-                ->first(function ($handler) use ($method) {
-                    return (new $handler)->canSend($method);
-                });
+        $correctHandler = collect(config('notificationSettings.handler'))
+            ->first(function ($handler) use ($driver) {
+                return (new $handler)->canSend($driver);
+            });
 
-            if ($correctHandler) {
-                return (new $correctHandler)->getSend($this);
-            }
+        if ($correctHandler) {
+            return (new $correctHandler)->getSend($this);
         }
 
-        return parent::__call($method, $parameters);
     }
 }
