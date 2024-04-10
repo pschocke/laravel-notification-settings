@@ -29,7 +29,7 @@ trait HasNotificationSettings
 
     public function saveNotificationSetting(array $request, bool $force = false)
     {
-        $type = Str::lower($request['type']);
+        $type = $request['type'];
 
         if (! array_key_exists($type, config('notificationSettings.handler'))) {
             return false;
